@@ -34,13 +34,4 @@ markdown_content = """<div align="center">
 *   `📁 Calculations/` - Duty cycle, component sizing, and ripple mathematics.
 *   `📁 Docs_and_Results/` - Project report, output waveforms (voltage, current, power), and Siemens Inspiro spec sheets.
 
-## 👥 Engineering Team
-*   **Idriss Rama Salim** - Auxiliary DC-DC Converter & Integration
-*   **Eunice Yeo Lok Qian** - AC-DC Rectifier
-*   **Mohamad Ameer Harith Bin Amran** - DC-AC Traction Inverter
-"""
 
-with open("README_V2.md", "w") as f:
-    f.write(markdown_content)
-    
-print("Updated File generated successfully.")
