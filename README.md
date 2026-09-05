@@ -1,4 +1,4 @@
-markdown_content = """<div align="center">
+
   <h1>⚡ KVMRT Kajang Line: Train Power Electronics Simulation</h1>
   <p><strong>A full-system MATLAB/Simscape electrical simulation of a 750V DC rapid transit power architecture.</strong></p>
 </div>
