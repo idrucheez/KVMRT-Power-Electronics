@@ -1,33 +1,46 @@
-# KVMRT Power Electronics Conversion System Simulation
+markdown_content = """<div align="center">
+  <h1>⚡ KVMRT Kajang Line: Train Power Electronics Simulation</h1>
+  <p><strong>A full-system MATLAB/Simscape electrical simulation of a 750V DC rapid transit power architecture.</strong></p>
+</div>
 
-## Project Overview
-This repository contains the MATLAB/Simulink simulation of the power conversion system for the Klang Valley Mass Rapid Transit (KVMRT) Kajang Line (Siemens Inspiro rolling stock). Developed as part of the EEB/EFB 3033 Power Electronics Engineering Design Project at Universiti Teknologi PETRONAS.
+## 🚄 Project Overview
+*   **System Modeled:** Klang Valley Mass Rapid Transit (KVMRT) Kajang Line (Siemens Inspiro).
+*   **Academic Context:** EEB/EFB 3033 Power Electronics Engineering Design Project (Universiti Teknologi PETRONAS).
+*   **Objective:** Simulate the complete energy conversion pipeline from grid AC to traction motor AC, including onboard auxiliary DC loads.
 
-## System Architecture
-The simulated system represents a complete multi-stage Rectifier-DC/DC Converter-Inverter layout:
-*   **Stage 1: Rectifier (Wayside Substation)** - Converts 3-phase AC grid supply to a 750V DC third-rail supply.
-*   **Stage 2: Auxiliary DC-DC Converter (Onboard)** - Steps down the 500-900V DC input to a stable 110V DC for onboard auxiliary loads (30 kW per car).
-*   **Stage 3: Traction Inverter** - Converts 750V DC to 3-phase AC using SPWM for traction motors.
-*   **Integration**: 4-car system representation (M-T-T-M) integrating all subsystems.
+## 📐 System Architecture
+*   **Stage 1: Wayside Rectifier** - Converts 3-phase grid AC (584V line-to-line) to a 750V DC third-rail supply using a 6-pulse diode configuration.
+*   **Stage 2: Auxiliary DC-DC Converter** - Steps down 750V DC (variable 500-900V range) to a regulated 110V DC for train auxiliary systems.
+*   **Stage 3: Traction Inverter** - Synthesizes 3-phase AC from the 750V DC bus using SPWM (Sinusoidal Pulse Width Modulation) for traction motors.
+*   **Train Configuration:** 4-car modular layout (M-T-T-M) with distributed 30 kW auxiliary loads per car (120 kW total).
 
-## Key Contribution: Auxiliary DC-DC Converter
-Designed and implemented the onboard auxiliary power conversion subsystem:
-*   **Topology**: Non-isolated synchronous buck converter.
-*   **Specifications**: 500-900V DC input, 110V DC output, 30 kW rated power (120 kW total for 4 cars).
-*   **Component Sizing**: Calculated and validated L = 0.4 mH, Cout = 1.5 mF, Cin = 2 mF at fs = 5 kHz.
-*   **Control Strategy**: Engineered a discrete PI controller closed-loop system to replace open-loop fixed duty cycles, ensuring robust line and load regulation.
-*   **Modularity**: Created a reusable Simscape Electrical subsystem duplicated across the 4-car network for accurate load representation.
+## 🎯 My Technical Contribution: Auxiliary DC-DC Converter
+*   **Topology:** Non-isolated synchronous buck converter.
+*   **Control Engineering:** Transitioned from open-loop to closed-loop discrete PI control for robust line and load regulation.
+*   **Calculated Sizing:**
+    *   Inductor (L): 0.4 mH
+    *   Output Capacitor (Cout): 1.5 mF
+    *   Input Capacitor (Cin): 2 mF
+    *   Switching Frequency (fs): 5 kHz
+*   **Integration:** Designed a reusable Simscape Electrical subsystem with measurement outputs (Vout, Iout, Duty Cycle, Pout), deployed across a 4-car network simulation.
 
-## Repository Structure
-*   `/Simulink_Models` - Contains the individual and integrated `.slx` simulation files.
-*   `/Calculations` - Mathematical derivations for component sizing, duty cycles, and ripple analysis.
-*   `/Docs_and_Results` - Final project report, exported waveform graphs, and Siemens Inspiro reference data.
+## 📊 Key Results & Challenges Solved
+*   **Regulated Output:** Achieved ~108-109V DC output at ~270A (29 kW per car) under variable third-rail conditions.
+*   **Interface Resolution:** Successfully bridged mathematical Simulink signal logic (Rectifier) with Simscape Electrical physical conservation networks.
+*   **Solver Optimization:** Resolved multiple Solver Configuration errors by isolating physical networks.
 
-## Team Members
-*   **Idriss Rama Salim** - Auxiliary DC-DC Converter & System Integration
+## 📂 Repository Structure
+*   `📁 Simulink_Models/` - `.slx` files for isolated stages and the final integrated M-T-T-M system.
+*   `📁 Calculations/` - Duty cycle, component sizing, and ripple mathematics.
+*   `📁 Docs_and_Results/` - Project report, output waveforms (voltage, current, power), and Siemens Inspiro spec sheets.
+
+## 👥 Engineering Team
+*   **Idriss Rama Salim** - Auxiliary DC-DC Converter & Integration
 *   **Eunice Yeo Lok Qian** - AC-DC Rectifier
-*   **Mohamad Ameer Harith Bin Amran** - DC-AC Inverter & SPWM Generator
+*   **Mohamad Ameer Harith Bin Amran** - DC-AC Traction Inverter
+"""
 
-## Tools Used
-*   MATLAB / Simulink
-*   Simscape Electrical
+with open("README_V2.md", "w") as f:
+    f.write(markdown_content)
+    
+print("Updated File generated successfully.")
